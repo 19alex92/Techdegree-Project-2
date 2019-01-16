@@ -95,6 +95,7 @@ def create_player_files(humans, sharks, raptors, dragons):
 
 
 def league_builder_script():
+    """Runs all the functions for the programm"""
     open_file(players)
     sort_players(players, experienced, unexperienced)
     sort_experienced(experienced, sharks, raptors, dragons)
