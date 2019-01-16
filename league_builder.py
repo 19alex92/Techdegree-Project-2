@@ -12,7 +12,6 @@ players = []
 experienced = []
 unexperienced = []
 
-#test git
 # Include comments!!!!
 
 # opens file and reads it into players + makes a dict
@@ -51,12 +50,12 @@ def sort_unexperienced(unexp, sharks, raptors, dragons):
         else:
             raptors.append(divide)
 
+
 def create_team_file(team, team_name):
     with open("teams.txt", "a") as file:
         file.write("\n" + team_name.upper() + "\n" + "="*20 + "\n")
         for iteration in range(len(team)):
-            file.write(
-                        team[iteration]['Name'] + ", " 
+            file.write(team[iteration]['Name'] + ", " 
                         + team[iteration]['Soccer Experience'] + ", " 
                         + team[iteration]['Guardian Name(s)'] + "\n"
                         )
@@ -82,7 +81,8 @@ def create_player_files(humans, sharks, raptors, dragons):
             file.write("Dear {},\n" 
                         "our new advanced algorithm drafted this years teams.\n"
                         "Your Child {} is going to play on team {}.\n"
-                        "The first training will be on {}.".format(parents, child, team_name, first_training))
+                        "The first training will be on {}.\n"
+                        "Have a great day!".format(parents, child, team_name, first_training))
 
     
 def league_builder_script():
