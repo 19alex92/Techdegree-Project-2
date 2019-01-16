@@ -12,26 +12,27 @@ players = []
 experienced = []
 unexperienced = []
 
-# Include comments!!!!
 
-# opens file and reads it into players + makes a dict
 def open_file(humans):
+    """Opens a file and reads it as a dict into players"""
     with open('soccer_players.csv') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',')
         rows = list(reader)
         for row in rows:
             humans.append(dict(row))
 
-# sorts players in experienced and unexperienced            
+
 def sort_players(humans, exp, unexp):
+    """Sorts players in experienced and unexperienced"""
     for data in humans:
         if data['Soccer Experience'] == 'YES':
             exp.append(data)
         else:
             unexp.append(data)
 
-# sorts experienced players evenly in 3 teams
-def sort_experienced(exp, sharks, raptors, dragons):
+
+def sort_experienced(exp, sharks, raptors, dragons):  # Name the Teams differently (team_1)
+    """Sorts experienced players evenly in 3 teams"""
     for divide in exp:
         if len(sharks) < len(raptors):
             sharks.append(divide)
@@ -40,8 +41,9 @@ def sort_experienced(exp, sharks, raptors, dragons):
         else:
             raptors.append(divide)
 
-# sorts unexperienced players evenly in 3 teams
-def sort_unexperienced(unexp, sharks, raptors, dragons):
+
+def sort_unexperienced(unexp, sharks, raptors, dragons):  # Name the Teams differently
+    """Sorts unexperienced players evenly in 3 teams"""
     for divide in unexp:
         if len(sharks) < len(raptors):
             sharks.append(divide)
@@ -52,16 +54,20 @@ def sort_unexperienced(unexp, sharks, raptors, dragons):
 
 
 def create_team_file(team, team_name):
+    """Creats a new file named teams.txt and writes
+    the different Teams as well as the fitting players into it
+    """
     with open("teams.txt", "a") as file:
         file.write("\n" + team_name.upper() + "\n" + "="*20 + "\n")
         for iteration in range(len(team)):
-            file.write(team[iteration]['Name'] + ", " 
-                        + team[iteration]['Soccer Experience'] + ", " 
-                        + team[iteration]['Guardian Name(s)'] + "\n"
-                        )
+            file.write(team[iteration]['Name'] + ", "
+                       + team[iteration]['Soccer Experience'] + ", "
+                       + team[iteration]['Guardian Name(s)'] + "\n"
+                       )
 
 
 def create_player_files(humans, sharks, raptors, dragons):
+    """Creats a txt file for each player with a personalised message in it"""
     for iteration in range(len(humans)):
         name = humans[iteration]['Name']
         for teams in range(len(sharks)) and range(len(raptors)) and range(len(dragons)):
@@ -79,14 +85,15 @@ def create_player_files(humans, sharks, raptors, dragons):
         child = humans[iteration]['Name']
         with open(name, "a") as file:
             file.write(
-                        "Dear {},\n" 
+                        "Dear {},\n"
                         "our new advanced algorithm drafted this years teams.\n"
                         "Your Child {} is going to play on team {}.\n"
                         "The first training will be on {}.\n"
-                        "Have a great day!".format(parents, child, team_name, first_training
-                        ))
+                        "Have a great day!"
+                        .format(parents, child, team_name, first_training)
+                        )
 
-    
+
 def league_builder_script():
     open_file(players)
     sort_players(players, experienced, unexperienced)
