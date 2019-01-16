@@ -31,26 +31,26 @@ def sort_players(humans, exp, unexp):
             unexp.append(data)
 
 
-def sort_experienced(exp, sharks, raptors, dragons):  # Name the Teams differently (team_1)
+def sort_experienced(exp, team_1, team_2, team_3):
     """Sorts experienced players evenly in 3 teams"""
     for divide in exp:
-        if len(sharks) < len(raptors):
-            sharks.append(divide)
-        elif len(dragons) < len(sharks):
-            dragons.append(divide)
+        if len(team_1) < len(team_2):
+            team_1.append(divide)
+        elif len(team_3) < len(team_1):
+            team_3.append(divide)
         else:
-            raptors.append(divide)
+            team_2.append(divide)
 
 
-def sort_unexperienced(unexp, sharks, raptors, dragons):  # Name the Teams differently
+def sort_unexperienced(unexp, team_1, team_2, team_3):
     """Sorts unexperienced players evenly in 3 teams"""
     for divide in unexp:
-        if len(sharks) < len(raptors):
-            sharks.append(divide)
-        elif len(dragons) < len(sharks):
-            dragons.append(divide)
+        if len(team_1) < len(team_2):
+            team_1.append(divide)
+        elif len(team_3) < len(team_1):
+            team_3.append(divide)
         else:
-            raptors.append(divide)
+            team_2.append(divide)
 
 
 def create_team_file(team, team_name):
@@ -87,7 +87,7 @@ def create_player_files(humans, sharks, raptors, dragons):
             file.write(
                         "Dear {},\n"
                         "our new advanced algorithm drafted this years teams.\n"
-                        "Your Child {} is going to play on team {}.\n"
+                        "Your Child {} is going to play in team {}.\n"
                         "The first training will be on {}.\n"
                         "Have a great day!"
                         .format(parents, child, team_name, first_training)
