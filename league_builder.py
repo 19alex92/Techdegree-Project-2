@@ -78,11 +78,13 @@ def create_player_files(humans, sharks, raptors, dragons):
         parents = humans[iteration]['Guardian Name(s)']
         child = humans[iteration]['Name']
         with open(name, "a") as file:
-            file.write("Dear {},\n" 
+            file.write(
+                        "Dear {},\n" 
                         "our new advanced algorithm drafted this years teams.\n"
                         "Your Child {} is going to play on team {}.\n"
                         "The first training will be on {}.\n"
-                        "Have a great day!".format(parents, child, team_name, first_training))
+                        "Have a great day!".format(parents, child, team_name, first_training
+                        ))
 
     
 def league_builder_script():
