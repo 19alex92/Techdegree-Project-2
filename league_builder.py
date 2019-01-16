@@ -12,6 +12,7 @@ players = []
 experienced = []
 unexperienced = []
 
+#test git
 # Include comments!!!!
 
 # opens file and reads it into players + makes a dict
