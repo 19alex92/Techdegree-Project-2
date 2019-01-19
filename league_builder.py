@@ -48,7 +48,7 @@ def create_team_file(team, team_name):
     """
     with open("teams.txt", "a") as file:
         file.write("\n" + team_name.upper() + "\n" + "="*20 + "\n")
-        for iteration in range(len(team)):
+        for iteration in range(len(team)):  # This range(len()) gives back a number for every dict while iterating through
             file.write(team[iteration]['Name'] + ", "
                        + team[iteration]['Soccer Experience'] + ", "
                        + team[iteration]['Guardian Name(s)'] + "\n"
@@ -57,7 +57,7 @@ def create_team_file(team, team_name):
 
 def create_player_files(humans, sharks, raptors, dragons):
     """Creats a txt file for each player with a personalised message in it"""
-    for iteration in range(len(humans)):  # With range(len()) this gives back a number for each dict
+    for iteration in range(len(humans)):  # With range(len()) this again gives back a number for each dict while iterating through
         name = humans[iteration]['Name']
         for teams in range(len(sharks)) and range(len(raptors)) and range(len(dragons)):  # Same here with range(len()), except here I
             if name == sharks[teams]['Name']:                                             # use it to iterate through each team
