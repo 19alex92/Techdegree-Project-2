@@ -31,26 +31,15 @@ def sort_players(humans, exp, unexp):
             unexp.append(data)
 
 
-def sort_experienced(exp, team_1, team_2, team_3):
-    """Sorts experienced players evenly in 3 teams"""
-    for divide in exp:
+def sort_teams(player, team_1, team_2, team_3):
+    """Sorts players evenly in 3 teams"""
+    for sort in player:
         if len(team_1) < len(team_2):
-            team_1.append(divide)
+            team_1.append(sort)
         elif len(team_3) < len(team_1):
-            team_3.append(divide)
+            team_3.append(sort)
         else:
-            team_2.append(divide)
-
-
-def sort_unexperienced(unexp, team_1, team_2, team_3):
-    """Sorts unexperienced players evenly in 3 teams"""
-    for divide in unexp:
-        if len(team_1) < len(team_2):
-            team_1.append(divide)
-        elif len(team_3) < len(team_1):
-            team_3.append(divide)
-        else:
-            team_2.append(divide)
+            team_2.append(sort)
 
 
 def create_team_file(team, team_name):
@@ -68,13 +57,13 @@ def create_team_file(team, team_name):
 
 def create_player_files(humans, sharks, raptors, dragons):
     """Creats a txt file for each player with a personalised message in it"""
-    for iteration in range(len(humans)):
+    for iteration in range(len(humans)):  # With range(len()) this gives back a number for each dict
         name = humans[iteration]['Name']
-        for teams in range(len(sharks)) and range(len(raptors)) and range(len(dragons)):
-            if name == sharks[teams]['Name']:
-                team_name = "Sharks"
-                first_training = "02-11-2019"
-            elif name == raptors[teams]['Name']:
+        for teams in range(len(sharks)) and range(len(raptors)) and range(len(dragons)):  # Same here with range(len()), except here I
+            if name == sharks[teams]['Name']:                                             # use it to iterate through each team
+                team_name = "Sharks"                                                      # and match the player name from the previous loop
+                first_training = "02-11-2019"                                             # with the player name in this loop, to find out in
+            elif name == raptors[teams]['Name']:                                          # which team they are
                 team_name = "Raptors"
                 first_training = "02-12-2019"
             elif name == dragons[teams]['Name']:
@@ -98,8 +87,8 @@ def league_builder_script():
     """Runs all the functions for the programm"""
     open_file(players)
     sort_players(players, experienced, unexperienced)
-    sort_experienced(experienced, sharks, raptors, dragons)
-    sort_unexperienced(unexperienced, sharks, raptors, dragons)
+    sort_teams(experienced, sharks, raptors, dragons)
+    sort_teams(unexperienced, sharks, raptors, dragons)
     create_team_file(sharks, team_name_1)
     create_team_file(raptors, team_name_2)
     create_team_file(dragons, team_name_3)
